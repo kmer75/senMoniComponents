@@ -11,8 +11,10 @@ import {
   Provider as PaperProvider,
   DarkTheme,
   DefaultTheme,
+  Divider
 } from 'react-native-paper';
 import App from './RootNavigator';
+import HomeStack from './Navigator';
 import DrawerItems from './DrawerItems';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import TontineScreen from './../screens/TontineScreen';
@@ -209,13 +211,9 @@ export default function PaperExample() {
             AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
           }
         >
-          {Platform.OS === 'web' ? (
-            <App />
-          ) : (
             <Drawer.Navigator drawerContent={() => <DrawerContent />}>
               <Drawer.Screen name="Home" component={App} />
             </Drawer.Navigator>
-          )}
           <StatusBar style="light" />
         </NavigationContainer>
       </React.Fragment>
@@ -223,20 +221,43 @@ export default function PaperExample() {
   </SafeAreaProvider>
 </PaperProvider>;
 
+const EntryPointSn = 
+<PaperProvider theme={theme}>
+<SafeAreaProvider>
+  <PreferencesContext.Provider value={preferences}>
+    <React.Fragment>
+      <NavigationContainer
+        initialState={initialState}
+        onStateChange={(state) =>
+          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+        }
+      >
+          <Drawer.Navigator drawerContent={() => <DrawerContent />}>
+            <Drawer.Screen name="Home" component={HomeStack} />
+          </Drawer.Navigator>
+        <StatusBar style="light" />
+      </NavigationContainer>
+    </React.Fragment>
+  </PreferencesContext.Provider>
+</SafeAreaProvider>
+</PaperProvider>;
+
+return EntryPointSn;
+
 // return EntryPoint;
 
   return (
     <SafeAreaProvider>
     <ScreenWrapper>
       {/* 1ere ecran */}
-    {/* <TontineScreen/>
-    <TabViewExample /> */}
+    {/* <TontineScreen/>  */}
+    {/* <TabViewExample /> */}
      {/*fin 1ere ecran */}
      {/* Create Tontine  */}
-     <CreateTontineExample/>
+     {/* <CreateTontineExample/> */}
      <CreateTontineSuiteExample/>
-     {/* <CreateTontineListExample/>
-     <CreateTontineListToAddExample/> */}
+     {/* <CreateTontineListExample/>  */}
+     {/* <CreateTontineListToAddExample/>   */}
      {/* Fin Create Tontine */}
     </ScreenWrapper>
     </SafeAreaProvider>

@@ -37,6 +37,8 @@ import ToggleButtonExample from './Examples/ToggleButtonExample';
 import TouchableRippleExample from './Examples/TouchableRippleExample';
 import ThemeExample from './Examples/ThemeExample';
 import RadioButtonItemExample from './Examples/RadioButtonItemExample';
+import CreateTontineExample from './../screens/CreateTontineExample';
+import CreateTontineSuiteExample from '../screens/CreateTontineSuiteExample';
 
 export const examples: Record<
   string,
@@ -75,6 +77,9 @@ export const examples: Record<
   toggleButton: ToggleButtonExample,
   touchableRipple: TouchableRippleExample,
   theme: ThemeExample,
+  //MES COMPONENTS :
+  CreateTontine: CreateTontineExample,
+  CreateTontineSuite: CreateTontineSuiteExample,
 };
 
 type Props = {
@@ -103,6 +108,7 @@ export default function ExampleList({ navigation }: Props) {
   const { colors } = useTheme();
   const safeArea = useSafeArea();
 
+  console.log(data);
   return (
     <FlatList
       contentContainerStyle={{

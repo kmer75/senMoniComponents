@@ -7,7 +7,7 @@ import Spacer from '../utils/Spacer';
 import Colors from '../utils/constants/colors'
 import TextWrapper from '../components/TextWrapper';
 
-const CreateTontineExample = (props) => {
+const CreateTontineExample = ({navigation}) => {
   const { colors } = useTheme();
   const [text, setText] = React.useState("Adobe Tontine");
   const [longText, setLongText] = React.useState("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took ");
@@ -69,6 +69,18 @@ const CreateTontineExample = (props) => {
         multiline={true}
       />
       </View>
+
+      <Spacer/>
+
+      <Button
+          mode="contained"
+          color={colors.accent}
+          onPress={() => { navigation.push('CreateTontineSuite') }}
+          dark={true}
+        // style={styles.button}
+        >
+          Next
+        </Button>
     </React.Fragment>
   );
 };
